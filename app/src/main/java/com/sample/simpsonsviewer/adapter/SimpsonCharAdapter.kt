@@ -70,15 +70,21 @@ class SimpsonCharAdapter(
     }
 
     fun filterFavList(filterList: ArrayList<RelatedTopicModel>) {
-        // below line is to add our filtered
-        // list in our course array list.
         charList = filterList
         // below line is to notify our adapter
         // as change in recycler view data.
         notifyDataSetChanged()
     }
 
-    fun getFilter(): Filter {
+    override fun getItemCount(): Int {
+        return charList.size
+    }
+}
+
+
+
+/*
+* fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 //searchableList.clear()
@@ -146,7 +152,4 @@ class SimpsonCharAdapter(
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int {
-        return charList.size
-    }
-}
+* */

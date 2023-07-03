@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Character.toLowerCase
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val query = s.toString().lowercase()
-                 //simpsonCharAdapter.getFilter().filter(query)
+                //simpsonCharAdapter.getFilter().filter(query)
                 //simpsonCharAdapter.filter(query)
                 filter(query)
             }
@@ -76,73 +75,28 @@ class MainActivity : AppCompatActivity() {
                 // if the item is matched we are
                 // adding it to our filtered list.
                 filteredlist.add(item)
+                attachAdapter(filteredlist)
+                //simpsonCharAdapter.filterFavList(filteredlist)
+
             }
-        }
-        if (filteredlist.isEmpty()) {
-            // if no item is added in filtered list we are
-            // displaying a toast message as no data found.
-            Toast.makeText(this@MainActivity, "No Data Found..", Toast.LENGTH_SHORT).show()
-        } else {
-            // at last we are passing that filtered
-            // list to our adapter class.
-            simpsonCharAdapter.filterFavList(filteredlist)
-        }
-    }
 
-    fun searchChar(searchStr: String) {
-        for (char in mainList) {
-            if (char.Result.contains(searchStr)) {
-                var searchList = kotlin.collections.ArrayList<RelatedTopicModel>()
-                searchList.addAll(mainList)
-                attachAdapter(searchList)
-            }
+            /*if (filteredlist.isEmpty()) {
+                // if no item is added in filtered list we are
+                // displaying a toast message as no data found.
+                Toast.makeText(this@MainActivity, "No Data Found..", Toast.LENGTH_SHORT).show()
+            } else {
+                // at last we are passing that filtered
+                // list to our adapter class.
+                simpsonCharAdapter.filterFavList(filteredlist)
+            }*/
         }
-    }
 
-
-    private fun filterWithQuery(query: String) {
-        // Perform operation only is query is not empty
-        if (query.isNotEmpty()) {
-            // Call the function with valid query and take new filtered list.
-            val filteredList: kotlin.collections.ArrayList<RelatedTopicModel> =
-                onQueryChanged(query)
-            // Call the adapter with new filtered array list
-            attachAdapter(filteredList)
-            // If the matches are empty hide RecyclerView and show error text
-            toggleRecyclerView(filteredList)
-        } else if (query.isEmpty()) {
-            // If query is empty don't make changes to list
-            attachAdapter(mainList)
-        }
-    }
-
-    private fun onQueryChanged(filterQuery: String): ArrayList<RelatedTopicModel> {
-        // Empty new array list which contains new strings
-        val filteredList = ArrayList<RelatedTopicModel>()
-        // Loop through each item in list
-        for (charList in mainList) {
-            // Before checking string matching convert string to lower case.
-            if (charList.Result.lowercase().contains(filterQuery)) {
-                // If the match is success, add item to list.
-                filteredList.add(charList)
-            }
-        }
-        return filteredList
     }
 
     private fun attachAdapter(list: kotlin.collections.ArrayList<RelatedTopicModel>) {
         val searchAdapter = SimpsonCharAdapter(this@MainActivity, list)
         mainBinding.characterRecycler.layoutManager = LinearLayoutManager(this@MainActivity)
         mainBinding.characterRecycler.adapter = searchAdapter
-    }
-
-    private fun toggleRecyclerView(charList: List<RelatedTopicModel>) {
-        if (charList.isEmpty()) {
-            //noSearchResultsFoundText.visibility = View.VISIBLE
-        } else {
-            //recyclerView.visibility = View.VISIBLE
-            //noSearchResultsFoundText.visibility = View.INVISIBLE
-        }
     }
 
     private fun setUpResponse() {
@@ -176,3 +130,57 @@ class MainActivity : AppCompatActivity() {
         })
     }
 }
+
+
+/*
+fun searchChar(searchStr: String) {
+    for (char in mainList) {
+        if (char.Result.contains(searchStr)) {
+            var searchList = kotlin.collections.ArrayList<RelatedTopicModel>()
+            searchList.addAll(mainList)
+            attachAdapter(searchList)
+        }
+    }
+}
+
+private fun filterWithQuery(query: String) {
+    // Perform operation only is query is not empty
+    if (query.isNotEmpty()) {
+        // Call the function with valid query and take new filtered list.
+        val filteredList: kotlin.collections.ArrayList<RelatedTopicModel> =
+            onQueryChanged(query)
+        // Call the adapter with new filtered array list
+        attachAdapter(filteredList)
+        // If the matches are empty hide RecyclerView and show error text
+        toggleRecyclerView(filteredList)
+    } else if (query.isEmpty()) {
+        // If query is empty don't make changes to list
+        attachAdapter(mainList)
+    }
+}
+
+private fun onQueryChanged(filterQuery: String): ArrayList<RelatedTopicModel> {
+    // Empty new array list which contains new strings
+    val filteredList = ArrayList<RelatedTopicModel>()
+    // Loop through each item in list
+    for (charList in mainList) {
+        // Before checking string matching convert string to lower case.
+        if (charList.Result.lowercase().contains(filterQuery)) {
+            // If the match is success, add item to list.
+            filteredList.add(charList)
+        }
+    }
+    return filteredList
+}
+
+
+
+private fun toggleRecyclerView(charList: List<RelatedTopicModel>) {
+    if (charList.isEmpty()) {
+        //noSearchResultsFoundText.visibility = View.VISIBLE
+    } else {
+        //recyclerView.visibility = View.VISIBLE
+        //noSearchResultsFoundText.visibility = View.INVISIBLE
+    }
+}
+*/
