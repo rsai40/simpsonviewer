@@ -1,4 +1,4 @@
-package com.sample.simpsonsviewer.activity
+package com.sample.wireviewer.activity
 
 import android.os.Bundle
 import android.text.Editable
@@ -8,17 +8,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.health.diabetics.ApiInterface
-import com.sample.simpsonsviewer.adapter.SimpsonCharAdapter
-import com.sample.simpsonsviewer.databinding.ActivityMainBinding
-import com.sample.simpsonsviewer.model.RelatedTopicModel
-import com.sample.simpsonsviewer.model.SimpsonCharModel
+import com.sample.wireviewer.adapter.SimpsonCharAdapter
+import com.sample.wireviewer.databinding.ActivityMainBinding
+import com.sample.wireviewer.model.RelatedTopicModel
+import com.sample.wireviewer.model.SimpsonCharModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Character.toLowerCase
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
@@ -76,9 +75,10 @@ class MainActivity : AppCompatActivity() {
                 // if the item is matched we are
                 // adding it to our filtered list.
                 filteredlist.add(item)
+                attachAdapter(filteredlist)
             }
         }
-        if (filteredlist.isEmpty()) {
+        /*if (filteredlist.isEmpty()) {
             // if no item is added in filtered list we are
             // displaying a toast message as no data found.
             Toast.makeText(this@MainActivity, "No Data Found..", Toast.LENGTH_SHORT).show()
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             // at last we are passing that filtered
             // list to our adapter class.
             simpsonCharAdapter.filterFavList(filteredlist)
-        }
+        }*/
     }
 
     fun searchChar(searchStr: String) {

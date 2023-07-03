@@ -1,19 +1,17 @@
 package com.health.diabetics
 
-import com.sample.simpsonsviewer.model.IconModel
-import com.sample.simpsonsviewer.model.SimpsonCharModel
+import com.sample.wireviewer.model.IconModel
+import com.sample.wireviewer.model.SimpsonCharModel
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 import retrofit2.http.Url
 
 interface ApiInterface {
 
 
-    @GET("?q=simpsons+characters&format=json")
+    @GET("?q=the+wire+characters&format=json")
     fun getCharacters(): Call<SimpsonCharModel>
 
     @GET("i/")

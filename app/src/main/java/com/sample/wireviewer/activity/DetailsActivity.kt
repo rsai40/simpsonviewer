@@ -1,14 +1,12 @@
-package com.sample.simpsonsviewer.activity
+package com.sample.wireviewer.activity
 
 import android.os.Bundle
 import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
-import androidx.transition.Fade
 import com.bumptech.glide.Glide
 import com.health.diabetics.ApiInterface
-import com.sample.simpsonsviewer.databinding.ActivityDetailsBinding
-import com.sample.simpsonsviewer.model.RelatedTopicModel
-import com.sample.simpsonsviewer.model.SimpsonCharModel
+import com.sample.wireviewer.databinding.ActivityDetailsBinding
+import com.sample.wireviewer.model.RelatedTopicModel
 
 class DetailsActivity : AppCompatActivity() {
 

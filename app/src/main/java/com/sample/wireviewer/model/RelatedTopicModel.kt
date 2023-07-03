@@ -1,4 +1,4 @@
-package com.sample.simpsonsviewer.model
+package com.sample.wireviewer.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

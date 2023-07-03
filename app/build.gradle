@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.sample.simpsonsviewer'
+    namespace 'com.sample.wireviewer'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.sample.simpsonsviewer"
+        applicationId "com.sample.wireviewer"
         minSdk 24
         targetSdk 33
         versionCode 1
