@@ -39,11 +39,16 @@ class MainActivity : AppCompatActivity() {
             mainBinding.characterRecycler.setHasFixedSize(true)
         }
 
+        mainBinding.refreshRecycler.setOnRefreshListener {
+            setUpResponse()
+            mainBinding.refreshRecycler.isRefreshing = false;
+        }
+
         mainBinding.characterSearch.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val query = s.toString().lowercase()
-                 //simpsonCharAdapter.getFilter().filter(query)
+                //simpsonCharAdapter.getFilter().filter(query)
                 //simpsonCharAdapter.filter(query)
                 filter(query)
             }
@@ -72,19 +77,15 @@ class MainActivity : AppCompatActivity() {
         for (item in mainList) {
             // checking if the entered string matched with any item of our recycler view.
             if (item.Result.lowercase().contains(text.lowercase())) {
-                // if the item is matched we are
-                // adding it to our filtered list.
                 filteredlist.add(item)
                 attachAdapter(filteredlist)
             }
         }
         /*if (filteredlist.isEmpty()) {
-            // if no item is added in filtered list we are
-            // displaying a toast message as no data found.
+
             Toast.makeText(this@MainActivity, "No Data Found..", Toast.LENGTH_SHORT).show()
         } else {
-            // at last we are passing that filtered
-            // list to our adapter class.
+
             simpsonCharAdapter.filterFavList(filteredlist)
         }*/
     }
