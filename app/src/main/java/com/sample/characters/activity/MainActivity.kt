@@ -1,4 +1,4 @@
-package com.sample.wireviewer.activity
+package com.sample.characters.activity
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,11 +7,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.health.diabetics.ApiInterface
-import com.sample.wireviewer.adapter.SimpsonCharAdapter
-import com.sample.wireviewer.databinding.ActivityMainBinding
-import com.sample.wireviewer.model.RelatedTopicModel
-import com.sample.wireviewer.model.SimpsonCharModel
+import com.sample.characters.BuildConfig
+import com.sample.characters.R
+import com.sample.characters.adapter.SimpsonCharAdapter
+import com.sample.characters.databinding.ActivityMainBinding
+import com.sample.characters.model.RelatedTopicModel
+import com.sample.characters.model.SimpsonCharModel
+import com.sample.characters.network.ApiInterface
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,6 +24,7 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var api: Call<SimpsonCharModel>
     lateinit var mainBinding: ActivityMainBinding
     lateinit var simpsonCharAdapter: SimpsonCharAdapter
     lateinit var mainList: ArrayList<RelatedTopicModel>
@@ -90,46 +93,6 @@ class MainActivity : AppCompatActivity() {
         }*/
     }
 
-    fun searchChar(searchStr: String) {
-        for (char in mainList) {
-            if (char.Result.contains(searchStr)) {
-                var searchList = kotlin.collections.ArrayList<RelatedTopicModel>()
-                searchList.addAll(mainList)
-                attachAdapter(searchList)
-            }
-        }
-    }
-
-
-    private fun filterWithQuery(query: String) {
-        // Perform operation only is query is not empty
-        if (query.isNotEmpty()) {
-            // Call the function with valid query and take new filtered list.
-            val filteredList: kotlin.collections.ArrayList<RelatedTopicModel> =
-                onQueryChanged(query)
-            // Call the adapter with new filtered array list
-            attachAdapter(filteredList)
-            // If the matches are empty hide RecyclerView and show error text
-            toggleRecyclerView(filteredList)
-        } else if (query.isEmpty()) {
-            // If query is empty don't make changes to list
-            attachAdapter(mainList)
-        }
-    }
-
-    private fun onQueryChanged(filterQuery: String): ArrayList<RelatedTopicModel> {
-        // Empty new array list which contains new strings
-        val filteredList = ArrayList<RelatedTopicModel>()
-        // Loop through each item in list
-        for (charList in mainList) {
-            // Before checking string matching convert string to lower case.
-            if (charList.Result.lowercase().contains(filterQuery)) {
-                // If the match is success, add item to list.
-                filteredList.add(charList)
-            }
-        }
-        return filteredList
-    }
 
     private fun attachAdapter(list: kotlin.collections.ArrayList<RelatedTopicModel>) {
         val searchAdapter = SimpsonCharAdapter(this@MainActivity, list)
@@ -147,8 +110,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpResponse() {
+        var buildName = BuildConfig.APPLICATION_ID
+        api = if (buildName.equals("com.sample.characters.simpsonviewer")) {
+            ApiInterface.createApi().getSimpsonCharacters()
+        } else {
+            ApiInterface.createApi().getCharacters()
+        }
 
-        val api = ApiInterface.createApi().getCharacters()
+        this.title= resources.getString(R.string.simpson)
 
         api.enqueue(object : Callback<SimpsonCharModel> {
             override fun onResponse(
@@ -177,3 +146,47 @@ class MainActivity : AppCompatActivity() {
         })
     }
 }
+
+
+/*
+fun searchChar(searchStr: String) {
+    for (char in mainList) {
+        if (char.Result.contains(searchStr)) {
+            var searchList = kotlin.collections.ArrayList<RelatedTopicModel>()
+            searchList.addAll(mainList)
+            attachAdapter(searchList)
+        }
+    }
+}
+
+
+private fun filterWithQuery(query: String) {
+    // Perform operation only is query is not empty
+    if (query.isNotEmpty()) {
+        // Call the function with valid query and take new filtered list.
+        val filteredList: kotlin.collections.ArrayList<RelatedTopicModel> =
+            onQueryChanged(query)
+        // Call the adapter with new filtered array list
+        attachAdapter(filteredList)
+        // If the matches are empty hide RecyclerView and show error text
+        toggleRecyclerView(filteredList)
+    } else if (query.isEmpty()) {
+        // If query is empty don't make changes to list
+        attachAdapter(mainList)
+    }
+}
+
+private fun onQueryChanged(filterQuery: String): ArrayList<RelatedTopicModel> {
+    // Empty new array list which contains new strings
+    val filteredList = ArrayList<RelatedTopicModel>()
+    // Loop through each item in list
+    for (charList in mainList) {
+        // Before checking string matching convert string to lower case.
+        if (charList.Result.lowercase().contains(filterQuery)) {
+            // If the match is success, add item to list.
+            filteredList.add(charList)
+        }
+    }
+    return filteredList
+}
+*/

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.sample.wireviewer'
+    namespace 'com.sample.characters'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.sample.wireviewer"
+        applicationId "com.sample.characters"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -20,16 +20,35 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
+    flavorDimensions "default"
+    productFlavors {
+
+        create("simpson") {
+            dimension "default"
+            applicationIdSuffix = ".simpsonviewer"
+        }
+
+        create("wire") {
+            dimension "default"
+            applicationIdSuffix = ".wireviewer"
+        }
+    }
+
     buildFeatures {
         viewBinding true
         dataBinding true
+        buildConfig = true
     }
+
 
     buildTypes {
         release {
             minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11

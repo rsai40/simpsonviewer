@@ -1,4 +1,4 @@
-package com.sample.wireviewer.model
+package com.sample.characters.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

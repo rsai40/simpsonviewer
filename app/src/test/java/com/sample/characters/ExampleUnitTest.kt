@@ -1,4 +1,4 @@
-package com.sample.wireviewer
+package com.sample.characters
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.sample.wireviewer.adapter
+package com.sample.characters.adapter
 
 import android.content.Intent
 import android.text.Html
@@ -10,11 +10,11 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.bumptech.glide.Glide
-import com.health.diabetics.ApiInterface
-import com.sample.wireviewer.activity.DetailsActivity
-import com.sample.wireviewer.activity.MainActivity
-import com.sample.wireviewer.databinding.CharacterItemBinding
-import com.sample.wireviewer.model.RelatedTopicModel
+import com.sample.characters.activity.DetailsActivity
+import com.sample.characters.activity.MainActivity
+import com.sample.characters.databinding.CharacterItemBinding
+import com.sample.characters.model.RelatedTopicModel
+import com.sample.characters.network.ApiInterface
 
 class SimpsonCharAdapter(
     private var mainActivity: MainActivity,

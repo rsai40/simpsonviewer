@@ -1,12 +1,12 @@
-package com.sample.wireviewer.activity
+package com.sample.characters.activity
 
 import android.os.Bundle
 import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.health.diabetics.ApiInterface
-import com.sample.wireviewer.databinding.ActivityDetailsBinding
-import com.sample.wireviewer.model.RelatedTopicModel
+import com.sample.characters.databinding.ActivityDetailsBinding
+import com.sample.characters.model.RelatedTopicModel
+import com.sample.characters.network.ApiInterface
 
 class DetailsActivity : AppCompatActivity() {
 

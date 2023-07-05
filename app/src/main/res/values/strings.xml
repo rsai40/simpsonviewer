@@ -2,4 +2,5 @@
     <string name="app_name">WireViewer</string>
     <string name="enter_text">Enter Text</string>
     <string name="sample_text">Sample text</string>
+    <string name="simpson">Simpson</string>
 </resources>

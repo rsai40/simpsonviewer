@@ -1,7 +1,9 @@
-package com.health.diabetics
+package com.sample.characters.network
 
-import com.sample.wireviewer.model.IconModel
-import com.sample.wireviewer.model.SimpsonCharModel
+import android.util.Log
+import com.sample.characters.BuildConfig
+import com.sample.characters.model.IconModel
+import com.sample.characters.model.SimpsonCharModel
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,6 +16,10 @@ interface ApiInterface {
     @GET("?q=the+wire+characters&format=json")
     fun getCharacters(): Call<SimpsonCharModel>
 
+    @GET("?q=simpsons+characters&format=json")
+    fun getSimpsonCharacters(): Call<SimpsonCharModel>
+
+
     @GET("i/")
     fun getCharImage(@Url url: String): Call<IconModel>
 
@@ -24,6 +30,10 @@ interface ApiInterface {
         var IMAGE_URL = "https://duckduckgo.com"
 
         fun createApi(): ApiInterface {
+
+            Log.d("TAG", "createApi: " + BuildConfig.BUILD_TYPE)
+            Log.d("TAG", "createApi: " + BuildConfig.APPLICATION_ID)
+
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(BASE_URL)
