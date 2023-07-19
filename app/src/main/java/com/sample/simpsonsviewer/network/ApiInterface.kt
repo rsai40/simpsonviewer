@@ -1,4 +1,4 @@
-package com.health.diabetics
+package com.sample.simpsonsviewer.network
 
 import com.sample.simpsonsviewer.model.IconModel
 import com.sample.simpsonsviewer.model.SimpsonCharModel

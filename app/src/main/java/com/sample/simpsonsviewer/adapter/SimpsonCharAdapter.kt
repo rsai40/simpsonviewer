@@ -10,11 +10,11 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.bumptech.glide.Glide
-import com.health.diabetics.ApiInterface
 import com.sample.simpsonsviewer.activity.DetailsActivity
 import com.sample.simpsonsviewer.activity.MainActivity
 import com.sample.simpsonsviewer.databinding.CharacterItemBinding
 import com.sample.simpsonsviewer.model.RelatedTopicModel
+import com.sample.simpsonsviewer.network.ApiInterface
 
 class SimpsonCharAdapter(
     private var mainActivity: MainActivity,

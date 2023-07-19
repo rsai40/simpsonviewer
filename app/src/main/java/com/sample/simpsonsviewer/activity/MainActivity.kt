@@ -7,11 +7,11 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.health.diabetics.ApiInterface
 import com.sample.simpsonsviewer.adapter.SimpsonCharAdapter
 import com.sample.simpsonsviewer.databinding.ActivityMainBinding
 import com.sample.simpsonsviewer.model.RelatedTopicModel
 import com.sample.simpsonsviewer.model.SimpsonCharModel
+import com.sample.simpsonsviewer.network.ApiInterface
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

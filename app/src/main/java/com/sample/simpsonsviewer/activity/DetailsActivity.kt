@@ -5,10 +5,10 @@ import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
 import androidx.transition.Fade
 import com.bumptech.glide.Glide
-import com.health.diabetics.ApiInterface
 import com.sample.simpsonsviewer.databinding.ActivityDetailsBinding
 import com.sample.simpsonsviewer.model.RelatedTopicModel
 import com.sample.simpsonsviewer.model.SimpsonCharModel
+import com.sample.simpsonsviewer.network.ApiInterface
 
 class DetailsActivity : AppCompatActivity() {
 
